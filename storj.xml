@@ -1,141 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>6.0</version>
-    <date>2022-04-07T12:24:16Z</date>
-    <groups>
-        <group>
+    <version>6.2</version>
+    <date>2022-09-27T09:11:15Z</date>
+    <template_groups>
+        <template_group>
+            <uuid>8225ba5fbdec4eb8bf6dce7b9cfed862</uuid>
+            <name>StorJ</name>
+        </template_group>
+        <template_group>
             <uuid>7df96b18c230490a9a0a9e2307226338</uuid>
             <name>Templates</name>
-        </group>
-    </groups>
+        </template_group>
+    </template_groups>
     <templates>
         <template>
             <uuid>9b1d2fa7167b4d2ea42f45039a6a0333</uuid>
-            <template>Miners_Storj</template>
-            <name>Miners_Storj</name>
+            <template>StorJNode</template>
+            <name>StorJNode</name>
             <description>Path found using https://jsonpathfinder.com/
 If you use a different port than 14002 for webui, please modify the port in the macro section {$STORJWEBUIPORT}
 
-Template by Cédric MARCOUX (v1.0 07/04/22)
-https://twitter.com/cmarcx</description>
+Source Template by Cédric MARCOUX (v1.0 07/04/22)
+Modified by TOConspiracy (v1.5 27/09/22)</description>
             <groups>
+                <group>
+                    <name>StorJ</name>
+                </group>
                 <group>
                     <name>Templates</name>
                 </group>
             </groups>
             <items>
                 <item>
-                    <uuid>be3f88386dc042f3baec761733bb5e40</uuid>
-                    <name>Storj_allowedVersion</name>
-                    <type>HTTP_AGENT</type>
-                    <key>Storj_allowedVersion</key>
-                    <history>1d</history>
-                    <trends>0</trends>
-                    <value_type>TEXT</value_type>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.allowedVersion</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <uuid>cb19835976db448da10e46e75446d22f</uuid>
+                    <name>min Auditscore</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.min.auditscore</key>
+                    <delay>10m</delay>
+                    <trends>3650d</trends>
+                    <value_type>FLOAT</value_type>
+                    <params>min(last_foreach(//storj.node.satellite.auditScore.[*]))</params>
                 </item>
                 <item>
-                    <uuid>9d62a6b9af124cf891735565485dd290</uuid>
-                    <name>Storj_bandwidth.available</name>
+                    <uuid>76c2e71f1f74484cad56267e907b283d</uuid>
+                    <name>min Onlinescore</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.min.onlinescore</key>
+                    <delay>10m</delay>
+                    <trends>3650d</trends>
+                    <value_type>FLOAT</value_type>
+                    <params>min(last_foreach(//storj.node.satellite.onlineScore.[*]))</params>
+                </item>
+                <item>
+                    <uuid>7ef7f23b85994ab1979253871d1c02fd</uuid>
+                    <name>min Suspensionscore</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.min.suspensionscore</key>
+                    <delay>10m</delay>
+                    <trends>3650d</trends>
+                    <value_type>FLOAT</value_type>
+                    <params>min(last_foreach(//storj.node.satellite.suspensionScore.[*]))</params>
+                </item>
+                <item>
+                    <uuid>25980d3889514fc48a60739531337810</uuid>
+                    <name>current Payout</name>
                     <type>HTTP_AGENT</type>
-                    <key>Storj_bandwidth.available</key>
-                    <history>1d</history>
-                    <trends>30d</trends>
-                    <units>bps</units>
+                    <key>storj.node.payout.current</key>
+                    <delay>30m</delay>
+                    <trends>3650d</trends>
+                    <value_type>FLOAT</value_type>
                     <preprocessing>
                         <step>
                             <type>JSONPATH</type>
                             <parameters>
-                                <parameter>$.bandwidth.available</parameter>
+                                <parameter>$.currentMonth.payout</parameter>
                             </parameters>
                         </step>
                         <step>
                             <type>MULTIPLIER</type>
                             <parameters>
-                                <parameter>0.001</parameter>
+                                <parameter>0.01</parameter>
                             </parameters>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
-                </item>
-                <item>
-                    <uuid>f866e55115a54618b6ec20cdfe1ca07f</uuid>
-                    <name>Storj_bandwidth.used.change</name>
-                    <type>HTTP_AGENT</type>
-                    <key>Storj_bandwidth.used.change</key>
-                    <history>1d</history>
-                    <trends>30d</trends>
-                    <units>bps</units>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.bandwidth.used</parameter>
-                            </parameters>
-                        </step>
-                        <step>
-                            <type>SIMPLE_CHANGE</type>
-                            <parameters>
-                                <parameter/>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
-                </item>
-                <item>
-                    <uuid>b58d7c84d1d64145b4312d81e5278ace</uuid>
-                    <name>Storj_bandwidth.used.total</name>
-                    <type>HTTP_AGENT</type>
-                    <key>Storj_bandwidth.used.total</key>
-                    <history>1d</history>
-                    <trends>30d</trends>
-                    <units>bps</units>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.bandwidth.used</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
-                </item>
-                <item>
-                    <uuid>1055826084ee44dbb0e1350a19c5ab01</uuid>
-                    <name>Storj_configuredPort</name>
-                    <type>HTTP_AGENT</type>
-                    <key>Storj_configuredPort</key>
-                    <history>1d</history>
-                    <trends>30d</trends>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.configuredPort</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
                 </item>
                 <item>
                     <uuid>31059b262eab4ad2bb10da451b01fa5d</uuid>
-                    <name>Storj_currentMonthExpectations</name>
+                    <name>expected Payout</name>
                     <type>HTTP_AGENT</type>
-                    <key>Storj_currentMonthExpectations</key>
-                    <history>1d</history>
-                    <trends>30d</trends>
+                    <key>storj.node.payout.expected</key>
+                    <delay>30m</delay>
+                    <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <preprocessing>
                         <step>
@@ -152,15 +109,177 @@ https://twitter.com/cmarcx</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
+                </item>
+                <item>
+                    <uuid>564ce9a1f429431b8d3ac2e4b69488e4</uuid>
+                    <name>held Payout</name>
+                    <type>HTTP_AGENT</type>
+                    <key>storj.node.payout.held</key>
+                    <delay>30m</delay>
+                    <trends>3650d</trends>
+                    <value_type>FLOAT</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.currentMonth.held</parameter>
+                            </parameters>
+                        </step>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <timeout>10s</timeout>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
+                </item>
+                <item>
+                    <uuid>48cd2012c18d493c9265b0b2a01ed5a8</uuid>
+                    <name>Egress</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.sum.egress</key>
+                    <trends>3650d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>bps</units>
+                    <params>sum(last_foreach(//storj.node.satellite.egressSummary.[*]))</params>
+                </item>
+                <item>
+                    <uuid>437f4edc80e14da2af859bede235a3bd</uuid>
+                    <name>Ingress</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.sum.ingress</key>
+                    <trends>3650d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>bps</units>
+                    <params>sum(last_foreach(//storj.node.satellite.ingressSummary.[*]))</params>
+                </item>
+                <item>
+                    <uuid>2648ec0674f5438a8c29050ea37e02e3</uuid>
+                    <name>Egress used</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.used.egress</key>
+                    <delay>5m</delay>
+                    <trends>3650d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>B</units>
+                    <params>sum(last_foreach(//storj.node.satellite.egressUsed.[*]))</params>
+                </item>
+                <item>
+                    <uuid>fc77d713050048b7bbb081e064d33048</uuid>
+                    <name>Ingress used</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.used.ingress</key>
+                    <trends>3650d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>B</units>
+                    <params>sum(last_foreach(//storj.node.satellite.ingressUsed.[*]))</params>
+                </item>
+                <item>
+                    <uuid>be3f88386dc042f3baec761733bb5e40</uuid>
+                    <name>allowed Version</name>
+                    <type>HTTP_AGENT</type>
+                    <key>Storj_allowedVersion</key>
+                    <delay>10m</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.allowedVersion</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                </item>
+                <item>
+                    <uuid>9d62a6b9af124cf891735565485dd290</uuid>
+                    <name>Bandwidth available</name>
+                    <type>HTTP_AGENT</type>
+                    <key>Storj_bandwidth.available</key>
+                    <trends>3650d</trends>
+                    <units>bps</units>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.bandwidth.available</parameter>
+                            </parameters>
+                        </step>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.001</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <timeout>10s</timeout>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                </item>
+                <item>
+                    <uuid>f866e55115a54618b6ec20cdfe1ca07f</uuid>
+                    <name>Bandwidth usage</name>
+                    <type>HTTP_AGENT</type>
+                    <key>Storj_bandwidth.used.change</key>
+                    <trends>3650d</trends>
+                    <units>bps</units>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.bandwidth.used</parameter>
+                            </parameters>
+                        </step>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>8</parameter>
+                            </parameters>
+                        </step>
+                        <step>
+                            <type>CHANGE_PER_SECOND</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <timeout>10s</timeout>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>bandwidthSummary</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>b58d7c84d1d64145b4312d81e5278ace</uuid>
+                    <name>Bandwidth used</name>
+                    <type>HTTP_AGENT</type>
+                    <key>Storj_bandwidth.used.total</key>
+                    <trends>3650d</trends>
+                    <units>B</units>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.bandwidth.used</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <timeout>10s</timeout>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>6f863fd1bdfe4f2ea9573681279e25d3</uuid>
-                    <name>Storj_diskSpace.available</name>
+                    <name>Diskspace available</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_diskSpace.available</key>
-                    <history>1d</history>
-                    <trends>30d</trends>
+                    <delay>5m</delay>
+                    <trends>3650d</trends>
                     <units>B</units>
                     <preprocessing>
                         <step>
@@ -171,15 +290,23 @@ https://twitter.com/cmarcx</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <triggers>
+                        <trigger>
+                            <uuid>066432bca6004002ae9b4be68e14802e</uuid>
+                            <expression>last(/StorJNode/Storj_diskSpace.available,#20)&lt;=50</expression>
+                            <name>Node full</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
                 </item>
                 <item>
                     <uuid>0a787b775e7e44b38749e7e88c66b1dd</uuid>
-                    <name>Storj_diskSpace.overused</name>
+                    <name>Diskspace overused</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_diskSpace.overused</key>
-                    <history>1d</history>
-                    <trends>30d</trends>
+                    <delay>5m</delay>
+                    <trends>3650d</trends>
                     <units>B</units>
                     <preprocessing>
                         <step>
@@ -190,15 +317,15 @@ https://twitter.com/cmarcx</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>0a463d49c93c4d85a5b8ec16740738a4</uuid>
-                    <name>Storj_diskSpace.trash</name>
+                    <name>Diskspace Trash</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_diskSpace.trash</key>
-                    <history>1d</history>
-                    <trends>30d</trends>
+                    <delay>5m</delay>
+                    <trends>3650d</trends>
                     <units>B</units>
                     <preprocessing>
                         <step>
@@ -209,15 +336,15 @@ https://twitter.com/cmarcx</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>53e6bed0fe1640f09b48345999441db0</uuid>
-                    <name>Storj_diskSpace.used</name>
+                    <name>Diskspace used</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_diskSpace.used</key>
-                    <history>1d</history>
-                    <trends>30d</trends>
+                    <delay>5m</delay>
+                    <trends>3650d</trends>
                     <units>B</units>
                     <preprocessing>
                         <step>
@@ -228,14 +355,13 @@ https://twitter.com/cmarcx</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>3ccc78e2f6e44636acb8b8d968337358</uuid>
-                    <name>Storj_lastPinged</name>
+                    <name>last Pinged</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_lastPinged</key>
-                    <history>1d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
                     <preprocessing>
@@ -247,13 +373,13 @@ https://twitter.com/cmarcx</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
                     <triggers>
                         <trigger>
                             <uuid>6809d1f5ef2a43c9b3f0179c30c9ef83</uuid>
-                            <expression>nodata(/Miners_Storj/Storj_lastPinged,5m)=1</expression>
+                            <expression>nodata(/StorJNode/Storj_lastPinged,5m)=1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>nodata(/Miners_Storj/Storj_lastPinged,1m)=0</recovery_expression>
+                            <recovery_expression>nodata(/StorJNode/Storj_lastPinged,1m)=0</recovery_expression>
                             <name>Storj_Unreachable</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -262,10 +388,10 @@ https://twitter.com/cmarcx</description>
                 </item>
                 <item>
                     <uuid>aea9f4d0e9b0458889b95ccdc2ce8ed7</uuid>
-                    <name>Storj_nodeID</name>
+                    <name>Node ID</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_nodeID</key>
-                    <history>1d</history>
+                    <delay>1d</delay>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
                     <preprocessing>
@@ -277,33 +403,14 @@ https://twitter.com/cmarcx</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
-                </item>
-                <item>
-                    <uuid>bbd301e0090c468896320c279ca00219</uuid>
-                    <name>Storj_startedAt</name>
-                    <type>HTTP_AGENT</type>
-                    <key>Storj_startedAt</key>
-                    <history>1d</history>
-                    <trends>0</trends>
-                    <value_type>TEXT</value_type>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.startedAt</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>a5abaee4980b496faac289059d4d25a0</uuid>
-                    <name>Storj_upToDate</name>
+                    <name>upToDate</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_upToDate</key>
-                    <history>1d</history>
+                    <delay>10m</delay>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
                     <preprocessing>
@@ -315,13 +422,13 @@ https://twitter.com/cmarcx</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
                     <triggers>
                         <trigger>
                             <uuid>42b621aa34b74542813328bbda4cd8e2</uuid>
-                            <expression>last(/Miners_Storj/Storj_upToDate)&lt;&gt;&quot;true&quot;</expression>
+                            <expression>last(/StorJNode/Storj_upToDate)&lt;&gt;&quot;true&quot;</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Miners_Storj/Storj_upToDate)=&quot;true&quot;</recovery_expression>
+                            <recovery_expression>last(/StorJNode/Storj_upToDate)=&quot;true&quot;</recovery_expression>
                             <name>Storj_NeedUpdate</name>
                             <priority>WARNING</priority>
                             <manual_close>YES</manual_close>
@@ -330,10 +437,10 @@ https://twitter.com/cmarcx</description>
                 </item>
                 <item>
                     <uuid>d04e6624fc724313af78faebfc726ff9</uuid>
-                    <name>Storj_version</name>
+                    <name>Version</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_version</key>
-                    <history>1d</history>
+                    <delay>10m</delay>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
                     <preprocessing>
@@ -345,28 +452,435 @@ https://twitter.com/cmarcx</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
-                <item>
-                    <uuid>be1e54195b09431198c389a2b77a2005</uuid>
-                    <name>Storj_wallet</name>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>23403ca091db4e1187d9dab510015919</uuid>
+                    <name>Node per Satellite Data</name>
                     <type>HTTP_AGENT</type>
-                    <key>Storj_wallet</key>
-                    <history>1d</history>
-                    <trends>0</trends>
-                    <value_type>TEXT</value_type>
+                    <key>storj.node.satellites</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>204b7e01f19b4e0eb851342fff31c4d9</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Auditscore</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.auditScore.[{#SATELLITE.ID}]</key>
+                            <delay>10m</delay>
+                            <trends>3650d</trends>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.audits.auditScore</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>100</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>auditScore</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>bf5aa62720b348f0b3c36aaae2432bb7</uuid>
+                                    <expression>last(/StorJNode/storj.node.satellite.auditScore.[{#SATELLITE.ID}],#1)&lt;100</expression>
+                                    <name>Auditscore below 100%</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>6aeea6bedc474acda4f843c44cc44d8f</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Bandwidth</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.bandwidthSummary.[{#SATELLITE.ID}]</key>
+                            <trends>3650d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>Bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.bandwidthSummary</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>bandwidthSummary</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>752e3628fc6a4b03b2c4b5e1883c4293</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Storage used</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.currentStorageUsed.[{#SATELLITE.ID}]</key>
+                            <trends>3650d</trends>
+                            <units>B</units>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.currentStorageUsed</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>currentStorageUsed</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>fdee1fd25c1c4c69acb5ee70703490a8</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Disqualified</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.disqualified.[{#SATELLITE.ID}]</key>
+                            <delay>10m</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.satellites[?(@.id == &quot;{#SATELLITE.ID}&quot;)].disqualified</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>disqualified</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>847137ca98054ae38b63fe9f1011cafd</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Egress</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.egressSummary.[{#SATELLITE.ID}]</key>
+                            <trends>3650d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.egressSummary</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>egressSummary</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>c04745181bdd44dab311ee70e4725dac</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Egress used</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.egressUsed.[{#SATELLITE.ID}]</key>
+                            <delay>5m</delay>
+                            <trends>3650d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.egressSummary</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>egressSummary</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ae6dbf7b0e9b430791ab08e03ec826e4</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Ingress</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.ingressSummary.[{#SATELLITE.ID}]</key>
+                            <trends>3650d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.ingressSummary</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>ingressSummary</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>5fb00172aace407fbc77040f57cea49b</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Ingress used</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.ingressUsed.[{#SATELLITE.ID}]</key>
+                            <delay>5m</delay>
+                            <trends>3650d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.ingressSummary</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>ingressSummary</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>9db34c1209854d5b974f25a116eadc6e</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Onlinescore</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.onlineScore.[{#SATELLITE.ID}]</key>
+                            <delay>10m</delay>
+                            <trends>3650d</trends>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.audits.onlineScore</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>100</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>onlineScore</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>1fb40ac4c60241aca8ca4ded22b83d3a</uuid>
+                                    <expression>last(/StorJNode/storj.node.satellite.onlineScore.[{#SATELLITE.ID}],#1)&lt;=95</expression>
+                                    <name>Onlinescore below 95%</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>6db622c5a5b0449498d1c120664abf53</uuid>
+                                    <expression>last(/StorJNode/storj.node.satellite.onlineScore.[{#SATELLITE.ID}],#1)&lt;=99.5</expression>
+                                    <name>Onlinescore below 99.5%</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>6320cd76e4ef47838746b8be195cbb95</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Suspended</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.suspended.[{#SATELLITE.ID}]</key>
+                            <delay>10m</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.satellites[?(@.id == &quot;{#SATELLITE.ID}&quot;)].suspended</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>suspended</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f7058cc7a1ce414fb94b1f75b7ce3739</uuid>
+                            <name>Satellite {#SATELLITE.NAME} Suspensionscore</name>
+                            <type>HTTP_AGENT</type>
+                            <key>storj.node.satellite.suspensionScore.[{#SATELLITE.ID}]</key>
+                            <delay>10m</delay>
+                            <trends>3650d</trends>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.audits.suspensionScore</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>100</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <timeout>10s</timeout>
+                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <tags>
+                                <tag>
+                                    <tag>item</tag>
+                                    <value>suspensionScore</value>
+                                </tag>
+                                <tag>
+                                    <tag>satellite</tag>
+                                    <value>{#SATELLITE.NAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>c38147bd3f1c486fa0c9116309f5612d</uuid>
+                                    <expression>last(/StorJNode/storj.node.satellite.suspensionScore.[{#SATELLITE.ID}],#1)&lt;100</expression>
+                                    <name>Suspensionscore below 100%</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                    <timeout>30s</timeout>
+                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno</url>
+                    <lld_macro_paths>
+                        <lld_macro_path>
+                            <lld_macro>{#SATELLITE.ID}</lld_macro>
+                            <path>$.id</path>
+                        </lld_macro_path>
+                        <lld_macro_path>
+                            <lld_macro>{#SATELLITE.NAME}</lld_macro>
+                            <path>$.url</path>
+                        </lld_macro_path>
+                    </lld_macro_paths>
                     <preprocessing>
                         <step>
                             <type>JSONPATH</type>
                             <parameters>
-                                <parameter>$.wallet</parameter>
+                                <parameter>$.satellites</parameter>
                             </parameters>
                         </step>
                     </preprocessing>
-                    <timeout>10s</timeout>
-                    <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/</url>
-                </item>
-            </items>
+                </discovery_rule>
+            </discovery_rules>
             <macros>
                 <macro>
                     <macro>{$STORJWEBUIPORT}</macro>
@@ -379,9 +893,9 @@ https://twitter.com/cmarcx</description>
     <triggers>
         <trigger>
             <uuid>367115029d8646a0b4a99bbd7d905fd6</uuid>
-            <expression>last(/Miners_Storj/Storj_version)&lt;=last(/Miners_Storj/Storj_allowedVersion)</expression>
+            <expression>last(/StorJNode/Storj_version)&lt;=last(/StorJNode/Storj_allowedVersion)</expression>
             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-            <recovery_expression>last(/Miners_Storj/Storj_version)&gt;=last(/Miners_Storj/Storj_allowedVersion)</recovery_expression>
+            <recovery_expression>last(/StorJNode/Storj_version)&gt;=last(/StorJNode/Storj_allowedVersion)</recovery_expression>
             <name>Storj_UnauthorizedVersion</name>
             <priority>DISASTER</priority>
             <manual_close>YES</manual_close>
@@ -397,7 +911,7 @@ https://twitter.com/cmarcx</description>
                     <drawtype>FILLED_REGION</drawtype>
                     <color>00FF00</color>
                     <item>
-                        <host>Miners_Storj</host>
+                        <host>StorJNode</host>
                         <key>Storj_bandwidth.used.change</key>
                     </item>
                 </graph_item>
@@ -412,13 +926,12 @@ https://twitter.com/cmarcx</description>
             <show_work_period>NO</show_work_period>
             <show_triggers>NO</show_triggers>
             <type>PIE</type>
-            <show_3d>YES</show_3d>
             <graph_items>
                 <graph_item>
                     <color>1A7C11</color>
                     <calc_fnc>LAST</calc_fnc>
                     <item>
-                        <host>Miners_Storj</host>
+                        <host>StorJNode</host>
                         <key>Storj_diskSpace.available</key>
                     </item>
                 </graph_item>
@@ -427,7 +940,7 @@ https://twitter.com/cmarcx</description>
                     <color>FFFF00</color>
                     <calc_fnc>LAST</calc_fnc>
                     <item>
-                        <host>Miners_Storj</host>
+                        <host>StorJNode</host>
                         <key>Storj_diskSpace.overused</key>
                     </item>
                 </graph_item>
@@ -436,7 +949,7 @@ https://twitter.com/cmarcx</description>
                     <color>FF0000</color>
                     <calc_fnc>LAST</calc_fnc>
                     <item>
-                        <host>Miners_Storj</host>
+                        <host>StorJNode</host>
                         <key>Storj_diskSpace.trash</key>
                     </item>
                 </graph_item>
@@ -445,7 +958,7 @@ https://twitter.com/cmarcx</description>
                     <color>0080FF</color>
                     <calc_fnc>LAST</calc_fnc>
                     <item>
-                        <host>Miners_Storj</host>
+                        <host>StorJNode</host>
                         <key>Storj_diskSpace.used</key>
                     </item>
                 </graph_item>
