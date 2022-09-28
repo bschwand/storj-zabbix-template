@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.2</version>
-    <date>2022-09-27T09:11:15Z</date>
+    <date>2022-09-28T08:07:33Z</date>
     <template_groups>
         <template_group>
             <uuid>8225ba5fbdec4eb8bf6dce7b9cfed862</uuid>
@@ -470,6 +470,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                             <key>storj.node.satellite.auditScore.[{#SATELLITE.ID}]</key>
                             <delay>10m</delay>
                             <trends>3650d</trends>
+                            <value_type>FLOAT</value_type>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
@@ -746,6 +747,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                             <key>storj.node.satellite.onlineScore.[{#SATELLITE.ID}]</key>
                             <delay>10m</delay>
                             <trends>3650d</trends>
+                            <value_type>FLOAT</value_type>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
@@ -823,6 +825,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                             <key>storj.node.satellite.suspensionScore.[{#SATELLITE.ID}]</key>
                             <delay>10m</delay>
                             <trends>3650d</trends>
+                            <value_type>FLOAT</value_type>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
