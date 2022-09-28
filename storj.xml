@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.2</version>
-    <date>2022-09-28T08:07:33Z</date>
+    <date>2022-09-28T14:28:02Z</date>
     <template_groups>
         <template_group>
             <uuid>8225ba5fbdec4eb8bf6dce7b9cfed862</uuid>
@@ -84,7 +84,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
                 </item>
                 <item>
                     <uuid>31059b262eab4ad2bb10da451b01fa5d</uuid>
@@ -109,7 +109,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
                 </item>
                 <item>
                     <uuid>564ce9a1f429431b8d3ac2e4b69488e4</uuid>
@@ -134,7 +134,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
                 </item>
                 <item>
                     <uuid>48cd2012c18d493c9265b0b2a01ed5a8</uuid>
@@ -193,7 +193,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>9d62a6b9af124cf891735565485dd290</uuid>
@@ -217,7 +217,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>f866e55115a54618b6ec20cdfe1ca07f</uuid>
@@ -247,7 +247,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                     <tags>
                         <tag>
                             <tag>item</tag>
@@ -271,7 +271,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>6f863fd1bdfe4f2ea9573681279e25d3</uuid>
@@ -290,7 +290,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                     <triggers>
                         <trigger>
                             <uuid>066432bca6004002ae9b4be68e14802e</uuid>
@@ -317,7 +317,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>0a463d49c93c4d85a5b8ec16740738a4</uuid>
@@ -336,7 +336,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>53e6bed0fe1640f09b48345999441db0</uuid>
@@ -355,7 +355,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>3ccc78e2f6e44636acb8b8d968337358</uuid>
@@ -373,7 +373,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                     <triggers>
                         <trigger>
                             <uuid>6809d1f5ef2a43c9b3f0179c30c9ef83</uuid>
@@ -403,7 +403,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
                 <item>
                     <uuid>a5abaee4980b496faac289059d4d25a0</uuid>
@@ -422,7 +422,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                     <triggers>
                         <trigger>
                             <uuid>42b621aa34b74542813328bbda4cd8e2</uuid>
@@ -452,7 +452,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </step>
                     </preprocessing>
                     <timeout>10s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/</url>
                 </item>
             </items>
             <discovery_rules>
@@ -486,7 +486,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -529,7 +529,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -557,7 +557,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -586,7 +586,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -627,7 +627,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -657,7 +657,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -698,7 +698,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -728,7 +728,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -763,7 +763,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -806,7 +806,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -841,7 +841,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                                 </step>
                             </preprocessing>
                             <timeout>10s</timeout>
-                            <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
+                            <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/satellite/{#SATELLITE.ID}</url>
                             <tags>
                                 <tag>
                                     <tag>item</tag>
@@ -863,7 +863,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                         </item_prototype>
                     </item_prototypes>
                     <timeout>30s</timeout>
-                    <url>http://{HOST.NAME}:{$STORJWEBUIPORT}/api/sno</url>
+                    <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno</url>
                     <lld_macro_paths>
                         <lld_macro_path>
                             <lld_macro>{#SATELLITE.ID}</lld_macro>
