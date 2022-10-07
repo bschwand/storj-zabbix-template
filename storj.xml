@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.2</version>
-    <date>2022-09-28T14:28:02Z</date>
+    <date>2022-10-07T14:12:06Z</date>
     <template_groups>
         <template_group>
             <uuid>8225ba5fbdec4eb8bf6dce7b9cfed862</uuid>
@@ -31,6 +31,244 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                 </group>
             </groups>
             <items>
+                <item>
+                    <uuid>cef669d440c64956a086a32ce4362028</uuid>
+                    <name>canceled piece downloads</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[{$NODELOGPATH},&quot;.*download canceled.*GET&quot;,,,,,,]</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                        <tag>
+                            <tag>type</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>42c10bf1d0504080897e5b26d6ee4a71</uuid>
+                    <name>sucessfull piece downloads</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[{$NODELOGPATH},&quot;.*downloaded.*GET&quot;,,,,,,]</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                        <tag>
+                            <tag>type</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>4579e85cb5de4cf59cd5d761eb600d8a</uuid>
+                    <name>sucessfull audits</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[{$NODELOGPATH},&quot;.*downloaded.*GET_AUDIT&quot;,,,,,,]</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                        <tag>
+                            <tag>type</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>0c33c73d76464f12bfae27084e19a38a</uuid>
+                    <name>failed piece downloads</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[{$NODELOGPATH},&quot;.*download failed.*GET&quot;,,,,,,]</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                        <tag>
+                            <tag>type</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>8ffd40c7fc40412b8ca286f21c95aa81</uuid>
+                    <name>soft failed audits</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[{$NODELOGPATH},&quot;.*failed.*GET_AUDIT(?!.*exist)&quot;,,,,,,]</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                        <tag>
+                            <tag>type</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>64e12b5684e440da8fdbd090001ed7c9</uuid>
+                    <name>critical failed audits</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[{$NODELOGPATH},&quot;.*failed.*GET_AUDIT.*exist&quot;,,,,,,]</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                        <tag>
+                            <tag>type</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>6c24eb5da04c435d8012c85f9a101771</uuid>
+                    <name>canceled piece uploads</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[{$NODELOGPATH},&quot;.*upload canceled.*PUT&quot;,,,,,,]</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                        <tag>
+                            <tag>type</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>ad0861563d9f4a61a1ae371139b1a4dd</uuid>
+                    <name>sucessfull piece uploads</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[{$NODELOGPATH},&quot;.*uploaded.*PUT&quot;,,,,,,]</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                        <tag>
+                            <tag>type</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>2fd87d8002e343d1ac908e60386601fe</uuid>
+                    <name>failed piece uploads</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[{$NODELOGPATH},&quot;.*upload failed.*PUT&quot;,,,,,,]</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                        <tag>
+                            <tag>type</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>aa0a0818c58c44e4a4a80e6f7e815e8c</uuid>
+                    <name>sucessfull audits percentage</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.log.audits.sucessfull.percentage</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <value_type>FLOAT</value_type>
+                    <params>(sum(//log.count[{$NODELOGPATH},&quot;.*downloaded.*GET_AUDIT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})
+/(sum(//log.count[{$NODELOGPATH},&quot;.*downloaded.*GET_AUDIT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})
++sum(//log.count[{$NODELOGPATH},&quot;.*failed.*GET_AUDIT(?!.*exist)&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})
++sum(//log.count[{$NODELOGPATH},&quot;.*failed.*GET_AUDIT.*exist&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})
+))*100</params>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>7cd9abcb899a4c0680b551c04413b25a</uuid>
+                            <expression>last(/StorJNode/storj.node.log.audits.sucessfull.percentage)&lt;=98</expression>
+                            <name>sucessfull audits below 98% within last hour</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>75dd3b834c854e0fba6fc40386013e24</uuid>
+                    <name>sucessfull downloads percentage</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.log.downloads.sucessfull.percentage</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <value_type>FLOAT</value_type>
+                    <params>(sum(//log.count[{$NODELOGPATH},&quot;.*downloaded.*GET&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})/(sum(//log.count[{$NODELOGPATH},&quot;.*downloaded.*GET&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})+sum(//log.count[{$NODELOGPATH},&quot;.*download canceled.*GET&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})+sum(//log.count[{$NODELOGPATH},&quot;.*download failed.*GET&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})))*100</params>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>4d5b1c7408a149cb8f6df6c23b3037cb</uuid>
+                            <expression>last(/StorJNode/storj.node.log.downloads.sucessfull.percentage)&lt;=98</expression>
+                            <name>sucessfull downloads below 98% within last hour</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>f1ae8efd601f42bbbd7722812f844717</uuid>
+                    <name>sucessfull uploads percentage</name>
+                    <type>CALCULATED</type>
+                    <key>storj.node.log.uploads.sucessfull.percentage</key>
+                    <delay>5m</delay>
+                    <trends>3605d</trends>
+                    <value_type>FLOAT</value_type>
+                    <params>(sum(//log.count[{$NODELOGPATH},&quot;.*uploaded.*PUT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})/(sum(//log.count[{$NODELOGPATH},&quot;.*uploaded.*PUT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})+sum(//log.count[{$NODELOGPATH},&quot;.*upload canceled.*PUT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})+sum(//log.count[{$NODELOGPATH},&quot;.*upload failed.*PUT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})))*100</params>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>log</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>a2a9d1cab7084223bcb397952c3a6b4e</uuid>
+                            <expression>last(/StorJNode/storj.node.log.uploads.sucessfull.percentage)&lt;=98</expression>
+                            <name>sucessfull uploads percentage below 98% within last hour</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
                 <item>
                     <uuid>cb19835976db448da10e46e75446d22f</uuid>
                     <name>min Auditscore</name>
@@ -83,7 +321,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                             </parameters>
                         </step>
                     </preprocessing>
-                    <timeout>10s</timeout>
+                    <timeout>60s</timeout>
                     <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
                 </item>
                 <item>
@@ -108,7 +346,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                             </parameters>
                         </step>
                     </preprocessing>
-                    <timeout>10s</timeout>
+                    <timeout>60s</timeout>
                     <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
                 </item>
                 <item>
@@ -133,7 +371,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                             </parameters>
                         </step>
                     </preprocessing>
-                    <timeout>10s</timeout>
+                    <timeout>60s</timeout>
                     <url>http://{HOST.HOST}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
                 </item>
                 <item>
@@ -294,11 +532,21 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <triggers>
                         <trigger>
                             <uuid>066432bca6004002ae9b4be68e14802e</uuid>
-                            <expression>last(/StorJNode/Storj_diskSpace.available,#20)&lt;=50</expression>
+                            <expression>last(/StorJNode/Storj_diskSpace.available)&lt;=1000</expression>
                             <name>Node full</name>
                             <priority>INFO</priority>
                         </trigger>
                     </triggers>
+                </item>
+                <item>
+                    <uuid>4b41e95a6fde430284e0ef0cb06f8076</uuid>
+                    <name>Diskspace free</name>
+                    <type>CALCULATED</type>
+                    <key>Storj_diskSpace.free</key>
+                    <delay>5m</delay>
+                    <trends>3650d</trends>
+                    <units>B</units>
+                    <params>last(//Storj_diskSpace.available)-last(//Storj_diskSpace.trash)-last(//Storj_diskSpace.used)</params>
                 </item>
                 <item>
                     <uuid>0a787b775e7e44b38749e7e88c66b1dd</uuid>
@@ -886,6 +1134,10 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
             </discovery_rules>
             <macros>
                 <macro>
+                    <macro>{$LOGPERCENTAGETIMESHIFT}</macro>
+                    <value>1h</value>
+                </macro>
+                <macro>
                     <macro>{$STORJWEBUIPORT}</macro>
                     <value>14002</value>
                     <description>Storj storagenode WebUI port</description>
@@ -905,6 +1157,132 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
         </trigger>
     </triggers>
     <graphs>
+        <graph>
+            <uuid>f9c5e0de70e14ee3afcd221401360c4a</uuid>
+            <name>Audits</name>
+            <graph_items>
+                <graph_item>
+                    <color>FF0000</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>log.count[{$NODELOGPATH},&quot;.*failed.*GET_AUDIT.*exist&quot;,,,,,,]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F57F17</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>log.count[{$NODELOGPATH},&quot;.*failed.*GET_AUDIT(?!.*exist)&quot;,,,,,,]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>1B5E20</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>log.count[{$NODELOGPATH},&quot;.*downloaded.*GET_AUDIT&quot;,,,,,,]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>0D47A1</color>
+                    <yaxisside>RIGHT</yaxisside>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>storj.node.log.audits.sucessfull.percentage</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>ad8da7dc22e945989337ae1f12c4f1dd</uuid>
+            <name>Pieces Downloads</name>
+            <graph_items>
+                <graph_item>
+                    <color>F9A825</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>log.count[{$NODELOGPATH},&quot;.*download canceled.*GET&quot;,,,,,,]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>log.count[{$NODELOGPATH},&quot;.*download failed.*GET&quot;,,,,,,]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>1B5E20</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>log.count[{$NODELOGPATH},&quot;.*downloaded.*GET&quot;,,,,,,]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>2774A4</color>
+                    <yaxisside>RIGHT</yaxisside>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>storj.node.log.downloads.sucessfull.percentage</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>18fbbe50a3cd435c8b62ef4f2890b00a</uuid>
+            <name>Pieces Uploads</name>
+            <graph_items>
+                <graph_item>
+                    <color>F57F17</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>log.count[{$NODELOGPATH},&quot;.*upload canceled.*PUT&quot;,,,,,,]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>log.count[{$NODELOGPATH},&quot;.*upload failed.*PUT&quot;,,,,,,]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <yaxisside>RIGHT</yaxisside>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>storj.node.log.uploads.sucessfull.percentage</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>1B5E20</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>log.count[{$NODELOGPATH},&quot;.*uploaded.*PUT&quot;,,,,,,]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
         <graph>
             <uuid>3d26ecc3053c4e06ad6f0e7d722f80e8</uuid>
             <name>Storj_Graph_Bandwidth</name>
@@ -931,15 +1309,6 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
             <type>PIE</type>
             <graph_items>
                 <graph_item>
-                    <color>1A7C11</color>
-                    <calc_fnc>LAST</calc_fnc>
-                    <item>
-                        <host>StorJNode</host>
-                        <key>Storj_diskSpace.available</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>1</sortorder>
                     <color>FFFF00</color>
                     <calc_fnc>LAST</calc_fnc>
                     <item>
@@ -948,7 +1317,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     </item>
                 </graph_item>
                 <graph_item>
-                    <sortorder>2</sortorder>
+                    <sortorder>1</sortorder>
                     <color>FF0000</color>
                     <calc_fnc>LAST</calc_fnc>
                     <item>
@@ -957,12 +1326,21 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     </item>
                 </graph_item>
                 <graph_item>
-                    <sortorder>3</sortorder>
+                    <sortorder>2</sortorder>
                     <color>0080FF</color>
                     <calc_fnc>LAST</calc_fnc>
                     <item>
                         <host>StorJNode</host>
                         <key>Storj_diskSpace.used</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>199C0D</color>
+                    <calc_fnc>LAST</calc_fnc>
+                    <item>
+                        <host>StorJNode</host>
+                        <key>Storj_diskSpace.free</key>
                     </item>
                 </graph_item>
             </graph_items>
