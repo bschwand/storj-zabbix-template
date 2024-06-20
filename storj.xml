@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>6.2</version>
-    <date>2022-10-07T14:12:06Z</date>
+    <version>7.0</version>
     <template_groups>
         <template_group>
             <uuid>8225ba5fbdec4eb8bf6dce7b9cfed862</uuid>
@@ -37,6 +36,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>ZABBIX_ACTIVE</type>
                     <key>log.count[{$NODELOGPATH},&quot;.*download canceled.*GET&quot;,,,,,,]</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <tags>
                         <tag>
@@ -55,6 +55,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>ZABBIX_ACTIVE</type>
                     <key>log.count[{$NODELOGPATH},&quot;.*downloaded.*GET&quot;,,,,,,]</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <tags>
                         <tag>
@@ -73,6 +74,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>ZABBIX_ACTIVE</type>
                     <key>log.count[{$NODELOGPATH},&quot;.*downloaded.*GET_AUDIT&quot;,,,,,,]</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <tags>
                         <tag>
@@ -91,6 +93,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>ZABBIX_ACTIVE</type>
                     <key>log.count[{$NODELOGPATH},&quot;.*download failed.*GET&quot;,,,,,,]</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <tags>
                         <tag>
@@ -109,6 +112,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>ZABBIX_ACTIVE</type>
                     <key>log.count[{$NODELOGPATH},&quot;.*failed.*GET_AUDIT(?!.*exist)&quot;,,,,,,]</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <tags>
                         <tag>
@@ -127,6 +131,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>ZABBIX_ACTIVE</type>
                     <key>log.count[{$NODELOGPATH},&quot;.*failed.*GET_AUDIT.*exist&quot;,,,,,,]</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <tags>
                         <tag>
@@ -145,6 +150,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>ZABBIX_ACTIVE</type>
                     <key>log.count[{$NODELOGPATH},&quot;.*upload canceled.*PUT&quot;,,,,,,]</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <tags>
                         <tag>
@@ -163,6 +169,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>ZABBIX_ACTIVE</type>
                     <key>log.count[{$NODELOGPATH},&quot;.*uploaded.*PUT&quot;,,,,,,]</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <tags>
                         <tag>
@@ -181,6 +188,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>ZABBIX_ACTIVE</type>
                     <key>log.count[{$NODELOGPATH},&quot;.*upload failed.*PUT&quot;,,,,,,]</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <tags>
                         <tag>
@@ -199,6 +207,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>CALCULATED</type>
                     <key>storj.node.log.audits.sucessfull.percentage</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <value_type>FLOAT</value_type>
                     <params>(sum(//log.count[{$NODELOGPATH},&quot;.*downloaded.*GET_AUDIT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})
@@ -227,6 +236,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>CALCULATED</type>
                     <key>storj.node.log.downloads.sucessfull.percentage</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <value_type>FLOAT</value_type>
                     <params>(sum(//log.count[{$NODELOGPATH},&quot;.*downloaded.*GET&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})/(sum(//log.count[{$NODELOGPATH},&quot;.*downloaded.*GET&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})+sum(//log.count[{$NODELOGPATH},&quot;.*download canceled.*GET&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})+sum(//log.count[{$NODELOGPATH},&quot;.*download failed.*GET&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})))*100</params>
@@ -251,6 +261,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>CALCULATED</type>
                     <key>storj.node.log.uploads.sucessfull.percentage</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3605d</trends>
                     <value_type>FLOAT</value_type>
                     <params>(sum(//log.count[{$NODELOGPATH},&quot;.*uploaded.*PUT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})/(sum(//log.count[{$NODELOGPATH},&quot;.*uploaded.*PUT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})+sum(//log.count[{$NODELOGPATH},&quot;.*upload canceled.*PUT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})+sum(//log.count[{$NODELOGPATH},&quot;.*upload failed.*PUT&quot;,,,,,,],{$LOGPERCENTAGETIMESHIFT})))*100</params>
@@ -275,6 +286,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>CALCULATED</type>
                     <key>storj.node.min.auditscore</key>
                     <delay>10m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <params>min(last_foreach(//storj.node.satellite.auditScore.[*]))</params>
@@ -285,6 +297,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>CALCULATED</type>
                     <key>storj.node.min.onlinescore</key>
                     <delay>10m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <params>min(last_foreach(//storj.node.satellite.onlineScore.[*]))</params>
@@ -295,6 +308,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>CALCULATED</type>
                     <key>storj.node.min.suspensionscore</key>
                     <delay>10m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <params>min(last_foreach(//storj.node.satellite.suspensionScore.[*]))</params>
@@ -305,6 +319,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>storj.node.payout.current</key>
                     <delay>30m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <preprocessing>
@@ -323,6 +338,12 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     </preprocessing>
                     <timeout>60s</timeout>
                     <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>payout</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>31059b262eab4ad2bb10da451b01fa5d</uuid>
@@ -330,6 +351,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>storj.node.payout.expected</key>
                     <delay>30m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <preprocessing>
@@ -348,6 +370,12 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     </preprocessing>
                     <timeout>60s</timeout>
                     <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>payout</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>564ce9a1f429431b8d3ac2e4b69488e4</uuid>
@@ -355,6 +383,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>storj.node.payout.held</key>
                     <delay>30m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <preprocessing>
@@ -373,12 +402,19 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     </preprocessing>
                     <timeout>60s</timeout>
                     <url>http://{HOST.IP}:{$STORJWEBUIPORT}/api/sno/estimated-payout</url>
+                    <tags>
+                        <tag>
+                            <tag>item</tag>
+                            <value>payout</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>48cd2012c18d493c9265b0b2a01ed5a8</uuid>
                     <name>Egress</name>
                     <type>CALCULATED</type>
                     <key>storj.node.sum.egress</key>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <units>bps</units>
@@ -389,6 +425,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <name>Ingress</name>
                     <type>CALCULATED</type>
                     <key>storj.node.sum.ingress</key>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <units>bps</units>
@@ -400,6 +437,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>CALCULATED</type>
                     <key>storj.node.used.egress</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <units>B</units>
@@ -410,6 +448,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <name>Ingress used</name>
                     <type>CALCULATED</type>
                     <key>storj.node.used.ingress</key>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <value_type>FLOAT</value_type>
                     <units>B</units>
@@ -421,6 +460,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>Storj_allowedVersion</key>
                     <delay>10m</delay>
+                    <history>90d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
                     <preprocessing>
@@ -438,6 +478,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <name>Bandwidth available</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_bandwidth.available</key>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <units>bps</units>
                     <preprocessing>
@@ -462,6 +503,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <name>Bandwidth usage</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_bandwidth.used.change</key>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <units>bps</units>
                     <preprocessing>
@@ -498,6 +540,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <name>Bandwidth used</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_bandwidth.used.total</key>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <units>B</units>
                     <preprocessing>
@@ -517,6 +560,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>Storj_diskSpace.available</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <units>B</units>
                     <preprocessing>
@@ -544,6 +588,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>CALCULATED</type>
                     <key>Storj_diskSpace.free</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <units>B</units>
                     <params>last(//Storj_diskSpace.available)-last(//Storj_diskSpace.trash)-last(//Storj_diskSpace.used)</params>
@@ -554,6 +599,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>Storj_diskSpace.overused</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <units>B</units>
                     <preprocessing>
@@ -573,6 +619,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>Storj_diskSpace.trash</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <units>B</units>
                     <preprocessing>
@@ -592,6 +639,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>Storj_diskSpace.used</key>
                     <delay>5m</delay>
+                    <history>90d</history>
                     <trends>3650d</trends>
                     <units>B</units>
                     <preprocessing>
@@ -610,6 +658,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <name>last Pinged</name>
                     <type>HTTP_AGENT</type>
                     <key>Storj_lastPinged</key>
+                    <history>90d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
                     <preprocessing>
@@ -640,6 +689,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>Storj_nodeID</key>
                     <delay>1d</delay>
+                    <history>90d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
                     <preprocessing>
@@ -659,6 +709,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>Storj_upToDate</key>
                     <delay>10m</delay>
+                    <history>90d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
                     <preprocessing>
@@ -689,6 +740,7 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>Storj_version</key>
                     <delay>10m</delay>
+                    <history>90d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
                     <preprocessing>
@@ -710,6 +762,8 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <type>HTTP_AGENT</type>
                     <key>storj.node.satellites</key>
                     <delay>1h</delay>
+                    <lifetime>30d</lifetime>
+                    <enabled_lifetime_type>DISABLE_NEVER</enabled_lifetime_type>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>204b7e01f19b4e0eb851342fff31c4d9</uuid>
@@ -1138,14 +1192,14 @@ Modified by TOConspiracy (v1.5 27/09/22)</description>
                     <value>1h</value>
                 </macro>
                 <macro>
-                    <macro>{$STORJWEBUIPORT}</macro>
-                    <value>14002</value>
-                    <description>Storj storagenode WebUI port</description>
-                </macro>
-                <macro>
                     <macro>{$NODELOGPATH}</macro>
                     <value>/var/log/storagenode.log</value>
                     <description>Storj log file</description>
+                </macro>
+                <macro>
+                    <macro>{$STORJWEBUIPORT}</macro>
+                    <value>14002</value>
+                    <description>Storj storagenode WebUI port</description>
                 </macro>
             </macros>
         </template>
